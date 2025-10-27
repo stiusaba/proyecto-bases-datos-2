@@ -1,0 +1,13 @@
+# Entornos virtuales y dependencias
+node_modules/
+venv/
+.env
+
+# Archivos de base de datos o backups
+/backups/
+*.dump
+*.sql~
+
+# Archivos temporales
+*.log
+*.tmp
