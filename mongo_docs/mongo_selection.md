@@ -77,13 +77,19 @@ Después del análisis comparativo, se selecciona **MongoDB** como motor de base
 ---
 
 ## Aplicación dentro del proyecto
-En el contexto de la **Liga de Fútbol**, MongoDB se utilizará para almacenar información no estructurada o de cambio frecuente, como:
-- Historial de partidos y resultados.  
-- Estadísticas detalladas por jugador o equipo.  
-- Registros de transferencias.  
-- Datos históricos o analíticos para reportes.  
+En el contexto del proyecto "Liga de Fútbol", el componente **MongoDB** se implementará para gestionar información **no estructurada o semiestructurada** relacionada con el sistema de **noticias y contenido multimedia**.  
 
-De esta manera, la base NoSQL complementará la estructura relacional existente, permitiendo un sistema híbrido robusto y flexible.
+Su función principal será almacenar y administrar datos de cambio frecuente o de naturaleza dinámica, tales como:
+
+- Noticias publicadas por los usuarios del sistema.  
+- Archivos multimedia (imágenes, videos, audios) asociados a las publicaciones.  
+- Comentarios, reseñas y reacciones de los lectores.  
+- Etiquetas o categorías de clasificación de las noticias.  
+- Historial de actualizaciones y metadatos de los contenidos.
+
+De esta manera, MongoDB permitirá manejar información textual, multimedia y de interacción entre usuarios, complementando la base relacional (MySQL), que se encarga de la parte administrativa y estructurada del sistema.  
+El resultado es un **sistema híbrido robusto, escalable y flexible**, capaz de combinar información estructurada (MySQL) y documental (MongoDB) dentro de una misma aplicación web.
+
 
 ---
 
