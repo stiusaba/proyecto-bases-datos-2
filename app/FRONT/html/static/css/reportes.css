@@ -1,0 +1,15 @@
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+  gap: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.card canvas {
+  width: 100% !important;
+  max-height: 300px;
+}
+
+#reportes-partidos .table td:last-child {
+  width: 120px;
+}
