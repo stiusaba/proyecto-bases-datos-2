@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jugadores | LogicTech Football</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/css/main.css" />
+  <link rel="stylesheet" href="../static/css/jugadores.css" />
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">⚽</div>
+          <div class="logo-text">
+            <span class="logo-title">LogicTech</span>
+            <span class="logo-subtitle">Football Manager</span>
+          </div>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <h3 class="nav-section-title">Principal</h3>
+          <div class="nav-item">
+            <a href="index.html" class="nav-link">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Gestión</h3>
+          <div class="nav-item">
+            <a href="equipos.html" class="nav-link">
+              <span class="nav-icon">🏆</span>
+              <span class="nav-text">Equipos</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="jugadores.html" class="nav-link active">
+              <span class="nav-icon">👤</span>
+              <span class="nav-text">Jugadores</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="partidos.html" class="nav-link">
+              <span class="nav-icon">📅</span>
+              <span class="nav-text">Partidos</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="transferencias.html" class="nav-link">
+              <span class="nav-icon">🔄</span>
+              <span class="nav-text">Transferencias</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Contenido</h3>
+          <div class="nav-item">
+            <a href="noticias.html" class="nav-link">
+              <span class="nav-icon">📰</span>
+              <span class="nav-text">Noticias</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Análisis</h3>
+          <div class="nav-item">
+            <a href="reportes.html" class="nav-link">
+              <span class="nav-icon">📈</span>
+              <span class="nav-text">Reportes</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Sesión</h3>
+          <div class="nav-item">
+            <a href="login.html" class="nav-link" id="logout-link">
+              <span class="nav-icon">🚪</span>
+              <span class="nav-text">Cerrar sesión</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <h1 class="page-title"><span class="page-title-icon">👤</span>Jugadores</h1>
+          <div class="breadcrumb">
+            <span class="breadcrumb-item">Inicio</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item">Jugadores</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="search-jugadores" placeholder="Buscar jugador..." />
+          </div>
+          <button class="btn btn-primary" id="btn-nuevo-jugador">➕ Nuevo jugador</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="card">
+          <h2 class="card-title">Listado de jugadores</h2>
+          <div class="table-container" id="jugadores-table-container">
+            <table class="table" id="jugadores-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Posición</th>
+                  <th>Equipo</th>
+                  <th>Dorsal</th>
+                  <th>Goles</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="7" class="text-center muted">Cargando...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal jugador -->
+  <div class="modal-overlay" id="jugador-modal" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="jugador-modal-title">Nuevo jugador</h2>
+        <button class="modal-close" data-close-modal>×</button>
+      </div>
+      <div class="modal-body">
+        <form id="jugador-form">
+          <input type="hidden" id="jugador-id" />
+          <div class="form-group">
+            <label class="form-label" for="jugador-nombre">Nombre completo</label>
+            <input id="jugador-nombre" type="text" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="jugador-posicion">Posición</label>
+            <select id="jugador-posicion" class="form-control">
+              <option value="Portero">Portero</option>
+              <option value="Defensa">Defensa</option>
+              <option value="Mediocampo">Mediocampo</option>
+              <option value="Delantero">Delantero</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="jugador-equipo">Equipo</label>
+            <select id="jugador-equipo" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="jugador-dorsal">Dorsal</label>
+            <input id="jugador-dorsal" type="number" class="form-control" min="1" max="99" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="jugador-goles">Goles</label>
+            <input id="jugador-goles" type="number" class="form-control" min="0" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal>Cancelar</button>
+        <button class="btn btn-primary" id="btn-guardar-jugador">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="../static/js/config.js"></script>
+  <script src="../static/js/api.js"></script>
+  <script src="../static/js/ui.js"></script>
+  <script src="../static/js/jugadores.js"></script>
+</body>
+</html>

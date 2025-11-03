@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Transferencias | LogicTech Football</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/css/main.css" />
+  <link rel="stylesheet" href="../static/css/transferencias.css" />
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">⚽</div>
+          <div class="logo-text">
+            <span class="logo-title">LogicTech</span>
+            <span class="logo-subtitle">Football Manager</span>
+          </div>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <h3 class="nav-section-title">Principal</h3>
+          <div class="nav-item">
+            <a href="index.html" class="nav-link">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Gestión</h3>
+          <div class="nav-item">
+            <a href="equipos.html" class="nav-link">
+              <span class="nav-icon">🏆</span>
+              <span class="nav-text">Equipos</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="jugadores.html" class="nav-link">
+              <span class="nav-icon">👤</span>
+              <span class="nav-text">Jugadores</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="partidos.html" class="nav-link">
+              <span class="nav-icon">📅</span>
+              <span class="nav-text">Partidos</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="transferencias.html" class="nav-link active">
+              <span class="nav-icon">🔄</span>
+              <span class="nav-text">Transferencias</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Contenido</h3>
+          <div class="nav-item">
+            <a href="noticias.html" class="nav-link">
+              <span class="nav-icon">📰</span>
+              <span class="nav-text">Noticias</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Análisis</h3>
+          <div class="nav-item">
+            <a href="reportes.html" class="nav-link">
+              <span class="nav-icon">📈</span>
+              <span class="nav-text">Reportes</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Sesión</h3>
+          <div class="nav-item">
+            <a href="login.html" class="nav-link" id="logout-link">
+              <span class="nav-icon">🚪</span>
+              <span class="nav-text">Cerrar sesión</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <h1 class="page-title"><span class="page-title-icon">🔄</span>Mercado de transferencias</h1>
+          <div class="breadcrumb">
+            <span class="breadcrumb-item">Inicio</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item">Transferencias</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-primary" id="btn-nueva-transferencia">➕ Nueva transferencia</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="card">
+          <h2 class="card-title">Transferencias registradas</h2>
+          <div class="table-container" id="transfer-table-container">
+            <table class="table" id="transfer-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Jugador</th>
+                  <th>Desde</th>
+                  <th>Hacia</th>
+                  <th>Monto</th>
+                  <th>Fecha</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="8" class="text-center muted">Cargando...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal transferencia -->
+  <div class="modal-overlay" id="transfer-modal" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="transfer-modal-title">Registrar transferencia</h2>
+        <button class="modal-close" data-close-modal>×</button>
+      </div>
+      <div class="modal-body">
+        <form id="transfer-form">
+          <input type="hidden" id="transfer-id" />
+          <div class="form-group">
+            <label class="form-label" for="transfer-jugador">Jugador</label>
+            <select id="transfer-jugador" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="transfer-desde">Desde</label>
+            <select id="transfer-desde" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="transfer-hacia">Hacia</label>
+            <select id="transfer-hacia" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="transfer-monto">Monto</label>
+            <input id="transfer-monto" type="number" class="form-control" min="0" step="1000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="transfer-fecha">Fecha</label>
+            <input id="transfer-fecha" type="date" class="form-control" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal>Cancelar</button>
+        <button class="btn btn-primary" id="btn-guardar-transferencia">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="../static/js/config.js"></script>
+  <script src="../static/js/api.js"></script>
+  <script src="../static/js/ui.js"></script>
+  <script src="../static/js/transferencias.js"></script>
+</body>
+</html>

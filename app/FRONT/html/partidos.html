@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Partidos | LogicTech Football</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/css/main.css" />
+  <link rel="stylesheet" href="../static/css/partidos.css" />
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">⚽</div>
+          <div class="logo-text">
+            <span class="logo-title">LogicTech</span>
+            <span class="logo-subtitle">Football Manager</span>
+          </div>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <h3 class="nav-section-title">Principal</h3>
+          <div class="nav-item">
+            <a href="index.html" class="nav-link">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Gestión</h3>
+          <div class="nav-item">
+            <a href="equipos.html" class="nav-link">
+              <span class="nav-icon">🏆</span>
+              <span class="nav-text">Equipos</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="jugadores.html" class="nav-link">
+              <span class="nav-icon">👤</span>
+              <span class="nav-text">Jugadores</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="partidos.html" class="nav-link active">
+              <span class="nav-icon">📅</span>
+              <span class="nav-text">Partidos</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="transferencias.html" class="nav-link">
+              <span class="nav-icon">🔄</span>
+              <span class="nav-text">Transferencias</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Contenido</h3>
+          <div class="nav-item">
+            <a href="noticias.html" class="nav-link">
+              <span class="nav-icon">📰</span>
+              <span class="nav-text">Noticias</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Análisis</h3>
+          <div class="nav-item">
+            <a href="reportes.html" class="nav-link">
+              <span class="nav-icon">📈</span>
+              <span class="nav-text">Reportes</span>
+            </a>
+          </div>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-section-title">Sesión</h3>
+          <div class="nav-item">
+            <a href="login.html" class="nav-link" id="logout-link">
+              <span class="nav-icon">🚪</span>
+              <span class="nav-text">Cerrar sesión</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <h1 class="page-title">
+            <span class="page-title-icon">📅</span>Partidos
+          </h1>
+          <div class="breadcrumb">
+            <span class="breadcrumb-item">Inicio</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item">Partidos</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-primary" id="btn-nuevo-partido">➕ Programar partido</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="card">
+          <h2 class="card-title">Listado de partidos</h2>
+          <div class="table-container" id="partidos-table-container">
+            <table class="table" id="partidos-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Fecha</th>
+                  <th>Jornada</th>
+                  <th>Local</th>
+                  <th>Visitante</th>
+                  <th>Marcador</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="8" class="text-center muted">Cargando...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal partido -->
+  <div class="modal-overlay" id="partido-modal" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="partido-modal-title">Programar Partido</h2>
+        <button class="modal-close" data-close-modal>×</button>
+      </div>
+      <div class="modal-body">
+        <form id="partido-form">
+          <input type="hidden" id="partido-id" />
+          <div class="form-group">
+            <label class="form-label" for="fecha_hora">Fecha y hora</label>
+            <input type="datetime-local" id="fecha_hora" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="jornada">Jornada</label>
+            <input type="number" id="jornada" class="form-control" min="1" />
+          </div>
+          <div class="grid-2 gap-1">
+            <div class="form-group">
+              <label class="form-label" for="equipo_local">Equipo local</label>
+              <select id="equipo_local" class="form-control"></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="equipo_visitante">Equipo visitante</label>
+              <select id="equipo_visitante" class="form-control"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="estado">Estado</label>
+            <select id="estado" class="form-control">
+              <option value="PROGRAMADO">PROGRAMADO</option>
+              <option value="JUGADO">JUGADO</option>
+              <option value="SUSPENDIDO">SUSPENDIDO</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal>Cancelar</button>
+        <button class="btn btn-primary" id="btn-guardar-partido">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="../static/js/config.js"></script>
+  <script src="../static/js/api.js"></script>
+  <script src="../static/js/ui.js"></script>
+  <script src="../static/js/partidos.js"></script>
+</body>
+</html>
